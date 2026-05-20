@@ -13,7 +13,7 @@
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "clsx": "2.1.1",
-    "react-confetti": "6.4.0",
+    "react-confetti": "6.4.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
