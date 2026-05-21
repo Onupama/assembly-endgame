@@ -21,8 +21,7 @@ export default function AssemblyEndgame() {
     const lastGuessedLetter = guessedLetters[guessedLetters.length-1]
     const isLastGuessIncorrect = lastGuessedLetter && !currentWord.includes(lastGuessedLetter)
     const numGuessesLeft = totalGuessesLeft - wrongGuessCount
-    const isGameStart = guessedLetters.length > 0
-    const isGameOn = isGameStart && !isGameOver
+    const isGameStart = guessedLetters.length > 0 && !isGameOver
 
     // Static values
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
@@ -55,7 +54,7 @@ export default function AssemblyEndgame() {
     })
 
     const letterElements = currentWord.split("").map((letter, index) => {
-        const shouldRevealLetter = isGameLost ||  guessedLetters.includes(letter)  
+        const shouldRevealLetter = isGameLost || guessedLetters.includes(letter)  
         const letterClassName = clsx(
             isGameLost && !guessedLetters.includes(letter) && "missed-letter"
         )
@@ -154,7 +153,7 @@ export default function AssemblyEndgame() {
             </header>
 
             <Stopwatch 
-                isGameOn={isGameOn}
+                isGameStart={isGameStart}
                 isGameWon={isGameWon} 
                 gameId={gameId}
                 resetGame={resetGame}
@@ -202,7 +201,7 @@ export default function AssemblyEndgame() {
                     New Game
                 </button>
                 :
-                isGameStart && <p className="guesses">{findGuessesLeft()}</p>
+                guessedLetters.length > 0 && <p className="guesses">{findGuessesLeft()}</p>
             }
         </main>
     )

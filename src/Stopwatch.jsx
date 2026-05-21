@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react"
 
-export default function Stopwatch({isGameOn, gameId, isGameWon}) {
+export default function Stopwatch({isGameStart, gameId, isGameWon}) {
     const [time, setTime] = useState(0)
 
     const intervalRef = useRef(null)
@@ -9,18 +9,18 @@ export default function Stopwatch({isGameOn, gameId, isGameWon}) {
         setTime(0)
     }, [gameId])
 
-
     useEffect(() => {
-        if(isGameOn) {
+        if(isGameStart) {
             intervalRef.current = setInterval(() => {
                 setTime((prev) => prev + 1)
             }, 1000)
         }
     
         return () => clearInterval(intervalRef.current)
-    }, [isGameOn, gameId])
+    }, [isGameStart, gameId])
     
     const formatTime = (value) => String(value).padStart(2, "0")
+    
     
     if(isGameWon) {
         clearInterval(intervalRef.current)
