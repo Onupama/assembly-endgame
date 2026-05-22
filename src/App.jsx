@@ -138,14 +138,16 @@ export default function AssemblyEndgame() {
         setGuessedLetters([])
         setGameId((prev) => prev + 1)
     }
-
     
     return (
         <main>
-            {isGameWon && <Confetti 
-                            recycle={false}
-                            numberOfPieces={1000}
-            />}
+            {
+            isGameWon && 
+                <Confetti 
+                    recycle={false}
+                    numberOfPieces={1000}
+                />
+            }
             
             <header>
                 <h1>Assembly: Endgame</h1>
@@ -156,7 +158,6 @@ export default function AssemblyEndgame() {
                 isGameStart={isGameStart}
                 isGameWon={isGameWon} 
                 gameId={gameId}
-                resetGame={resetGame}
             />
 
             <section className={gameStatusClass}>
